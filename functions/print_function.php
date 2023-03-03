@@ -11,5 +11,6 @@
         $personal_data = $result->fetch_assoc();
         $_SESSION['app_data'] = $personal_data;    
      }
+   //   print_r( $_SESSION['app_data'] );
      header("Location: ../views/print.php");
 ?>

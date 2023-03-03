@@ -12,7 +12,7 @@
     $record_number = mysqli_num_rows( $result );
     // print( $record_number );
 
-    unset($_SESSION['app_data']);
+    // unset($_SESSION['app_data']);
     if( $record_number == 1 ){
         // Associative array            
         $personal_data = $result->fetch_assoc();
@@ -20,7 +20,13 @@
         $_SESSION['TCAS_round'] = $personal_data['TCAS'];        
         $_SESSION['app_data'] = $personal_data;
     }    
-    else{
+    else
+    {
+        $insert_sql = "INSERT INTO `application` (`Ntion_ID`)
+        VALUES ('".$_SESSION['new_national_id']."') ";
+        $mysqli->query($insert_sql);
+
+        
         $_SESSION['new_national_id'] = $national_id;
         $_SESSION['TCAS_round'] = $tcas_round;
         // $_SESSION['app_data'] = array();
