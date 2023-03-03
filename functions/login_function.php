@@ -14,26 +14,16 @@
 
     // unset($_SESSION['app_data']);
     if( $record_number == 1 ){
-
+        // Associative array            
         $personal_data = $result->fetch_assoc();
-        // if($personal_data['TCAS'] != $tcas_round ){
-        //     $_SESSION['new_national_id'] = $national_id;
-        //     $_SESSION['new_TCAS_round'] = $tcas_round;
-        //     $_SESSION['app_data'] = $personal_data;
-        //     $_SESSION['national_id'] = $personal_data['Ntion_ID'];  
-        // }else{
-              // Associative array              
         $_SESSION['national_id'] = $personal_data['Ntion_ID'];        
         $_SESSION['TCAS_round'] = $personal_data['TCAS'];        
         $_SESSION['app_data'] = $personal_data;
         $_SESSION['new_national_id'] = $national_id;
-        $_SESSION['new_TCAS_round'] = $tcas_round;
-        // }
-      
     }    
     else{
         $_SESSION['new_national_id'] = $national_id;
-        $_SESSION['new_TCAS_round'] = $tcas_round;
+        $_SESSION['TCAS_round'] = $tcas_round;
         // $_SESSION['app_data'] = array();
     }
     

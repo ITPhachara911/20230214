@@ -46,7 +46,7 @@
             <img class="mb-4" src="../assets/images/KU_Logo.png" alt="" width="100">
             <h2>กรอกข้อมูลส่วนตัว</h2>
             <p class="lead">
-                <?php echo isset($_SESSION['national_id']) ? "ผู้สมัคร : ".$_SESSION['app_data']['prefix_TH']." ".$_SESSION['app_data']['Fristname_TH']." ".$_SESSION['app_data']['lastname_TH']."  ( รอบ".$_SESSION['new_TCAS_round']." ) "  : "ผู้สมัครใหม่";  ?>
+                <?php echo isset($_SESSION['national_id']) ? "ผู้สมัคร : ".$_SESSION['app_data']['prefix_TH']." ".$_SESSION['app_data']['Fristname_TH']." ".$_SESSION['app_data']['lastname_TH'] : "ผู้สมัครใหม่";  ?>
             </p>
         </div>
 
