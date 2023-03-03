@@ -1,6 +1,10 @@
 <?php 
     session_start();
-    print_r( $_SESSION['app_data'] )
+    // print_r( $_SESSION['app_data'] )
+    
+    if(!isset($_SESSION['new_national_id'])){
+        header("Location: ../views/login.php");
+    }
 ?>
 
 
@@ -23,7 +27,7 @@
 <body>
         <div class="container">
             <div class="text-center">
-
+                <h1> ชื่อ <?php echo $_SESSION['app_data']['Fristname_TH']." ".$_SESSION['app_data']['lastname_TH']  ?> </h1>
             </div>
         </div>
 </body>

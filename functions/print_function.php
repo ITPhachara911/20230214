@@ -3,7 +3,7 @@
      session_start();
      require('../config.php');
 
-     $sql_query = " SELECT * FROM `application` WHERE `Ntion_ID` = '".$_SESSION['national_id']."' AND `TCAS` = ".$_SESSION['TCAS_round']." ;  ";
+     $sql_query = " SELECT * FROM `application` WHERE `Ntion_ID` = '".$_SESSION['new_national_id']."' AND `TCAS` = ".$_SESSION['TCAS_round']." ;  ";
      $result = $mysqli->query($sql_query);
      $record_number = mysqli_num_rows( $result );
 

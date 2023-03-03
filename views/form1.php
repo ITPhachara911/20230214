@@ -1,6 +1,10 @@
 <?php
     session_start();
     require('../config.php');
+
+    if(!isset($_SESSION['new_national_id'])){
+        header("Location: ../views/login.php");
+    }
 ?>
 
 

@@ -12,13 +12,14 @@
     $record_number = mysqli_num_rows( $result );
     // print( $record_number );
 
-    unset($_SESSION['app_data']);
+    // unset($_SESSION['app_data']);
     if( $record_number == 1 ){
         // Associative array            
         $personal_data = $result->fetch_assoc();
         $_SESSION['national_id'] = $personal_data['Ntion_ID'];        
         $_SESSION['TCAS_round'] = $personal_data['TCAS'];        
         $_SESSION['app_data'] = $personal_data;
+        $_SESSION['new_national_id'] = $national_id;
     }    
     else{
         $_SESSION['new_national_id'] = $national_id;
