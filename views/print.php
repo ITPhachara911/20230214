@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    print_r( $_SESSION['app_data'] );
+    print_r( $_SESSION['app_data'] )
 ?>
 
 
@@ -23,7 +23,7 @@
 <body>
         <div class="container">
             <div class="text-center">
-                
+
             </div>
         </div>
 </body>
