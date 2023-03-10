@@ -2,7 +2,22 @@
     session_start();
     require('../config.php');
     // print_r( $_POST );
- 
+
+    if($_SESSION['status']){
+        $sql_query = " SELECT * FROM `application` WHERE `Ntion_ID` = '".$_SESSION['new_national_id']."' AND `TCAS` = ".$_SESSION['TCAS_round']." ;  ";
+        $result = $mysqli->query($sql_query);
+        $record_number = mysqli_num_rows( $result );
+        
+            if( $record_number == 1 ){
+            $row = $result->fetch_assoc();
+            // print_r( $row['app_id'] );
+                if(isset($row['app_id'])){
+                    $update_sql = " UPDATE `address` SET  `app_id` = '".$row['app_id']."';";
+                    $mysqli->query($update_sql);
+                }
+            }
+    }
+      
     $sql_query = " SELECT * FROM `application` WHERE `Ntion_ID` = '".$_SESSION['new_national_id']."' AND `TCAS` = ".$_SESSION['TCAS_round']." ;  ";
     $result = $mysqli->query($sql_query);
     $record_number = mysqli_num_rows( $result );

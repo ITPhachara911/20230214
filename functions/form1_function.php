@@ -39,29 +39,36 @@
                                         `lastname_EN` = '".$_POST['en_lastname']."',
                                         `Ethnicity` = '".$selected_ethnicity."',
                                         `Nationality` =  '".$selected_nationality."',
-                                        `Address` =  '".$_POST['Address']."',
-                                        `street` = '".$_POST['street']."',
-                                        `Province` =  '".$_POST['Province']."',
-                                        `District` = '".$_POST['District']."',
-                                        `sub_District` =  '".$_POST['sub_District']."',
-                                        `Zipcode` = '".$_POST['zipcode']."',
                                         `Telephone` =  '".$_POST['Telephone']."',
                                         `Email` = '".$_POST['Email']."',
                                         `Birthday` =  ".$date."
                                          WHERE Ntion_ID = '".$_SESSION['new_national_id']."' ;";
+
+                                        //ตรงนี้ต้องเขียนจอยเทเบิ้ลอัพเดท ใช้ app_id อ้างอิง หรือบางทีอาจเขียนคำสั่ง sql ภายในคำสั่งเดียว
+                                        
+                                        //  `Address` =  '".$_POST['Address']."',
+                                        // `street` = '".$_POST['street']."',
+                                        // `Province` =  '".$_POST['Province']."',
+                                        // `District` = '".$_POST['District']."',
+                                        // `sub_District` =  '".$_POST['sub_District']."',
+                                        // `Zipcode` = '".$_POST['zipcode']."',
+                                        // `Telephone` =  '".$_POST['Telephone']."',
         // echo $update_sql;
+        // $update_sql .= "SELECT Country FROM Customers";
         $mysqli->query($update_sql);
-
-
     }
     else{
-        $insert_sql = "INSERT INTO `application` (`TCAS`, `prefix_TH`, `Fristname_TH`, `lastname_TH`, `prefix_EN`, `Fristname_EN`, `lastname_EN`, `Birthday`, `Ethnicity`, `Nationality`, `Region`, `Address`,`street`,`Province`,`District`,`sub_District`,`Zipcode`,`Telephone`,`Email`,`Ntion_ID`)
-        VALUES ('".$_SESSION['TCAS_round']."','".$_POST['th_prefix']."','".$_POST['th_firstname']."','".$_POST['th_lastname']."','".$_POST['en_prefix']."','".$_POST['en_firstname']."','".$_POST['en_lastname']."',".$date.",'".$_POST['ethnicity']."','".$_POST['nationality']."','".$selected_religion."','".$_POST['Address']."','".$_POST['street']."','".$_POST['Province']."','".$_POST['District']."','".$_POST['sub_District']."','".$_POST['zipcode']."','".$_POST['Telephone']."','".$_POST['Email']."','".$_SESSION['new_national_id']."') ";
-        $mysqli->query($insert_sql);
+        $insert_sql = "INSERT INTO `application` (`TCAS`, `prefix_TH`, `Fristname_TH`, `lastname_TH`, `prefix_EN`, `Fristname_EN`, `lastname_EN`, `Birthday`, `Ethnicity`, `Nationality`, `Region`,`Telephone`,`Email`,`Ntion_ID`)
+        VALUES ('".$_SESSION['TCAS_round']."','".$_POST['th_prefix']."','".$_POST['th_firstname']."','".$_POST['th_lastname']."','".$_POST['en_prefix']."','".$_POST['en_firstname']."','".$_POST['en_lastname']."',".$date.",'".$_POST['ethnicity']."','".$_POST['nationality']."','".$selected_religion."','".$_POST['Telephone']."','".$_POST['Email']."','".$_SESSION['new_national_id']."');";
+        
+        
+         $insert_sql .= "INSERT INTO `address` ( `address`,`street`,`province`,`district`,`sub_district`,`zipcode`)
+         VALUES ('".$_POST['Address']."','".$_POST['street']."','".$_POST['Province']."','".$_POST['District']."','".$_POST['sub_District']."','".$_POST['zipcode']."' ) ";     
+        // echo $insert_sql;
+
+        $mysqli->multi_query($insert_sql);
+        $_SESSION['status'] = $mysqli;
     }
-
-
-
 
     $_SESSION['fname'] = $fname;
     $_SESSION['lname'] = $lname;
